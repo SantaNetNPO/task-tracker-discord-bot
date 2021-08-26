@@ -10,3 +10,6 @@ six
 tzlocal
 websockets
 black
+
+# Dev
+pre-commit
