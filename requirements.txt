@@ -10,6 +10,8 @@ six
 tzlocal
 websockets
 black
+pyyaml
+google-cloud-firestore
 
 # Dev
 pre-commit

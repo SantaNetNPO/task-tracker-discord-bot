@@ -1,56 +1,71 @@
 departments:
   - name: Application Development
-    abbr: app-dev
+    id: app-dev
     objectives:
       - name: able to create a frontend
+        id: frontend-tasks
         tasks:
           - name: create a hello world app
+            id: hello-world
             subtasks:
               - setup flutter development environment
               - create a hello world flutter application
               - design the base application into the most beautiful version you can imagine
           - name: create a clock app
+            id: hello-clock
             subtasks:
               - create a barebones UI for the clock application (without making it update with time)
               - get system information about time
               - use the created UI to update time based on current time
       - name: able to create backend logic
+        id: backend-tasks
         tasks:
           - name: create a firebase firestore backend
+            id: firestore-backend
             subtasks:
               - create a firebase project
               - create a firebase firestore database
               - attach the firestore backend to a hello world flutter app
           - name: fetch data from database and display it
+            id: basic-database-operations
             subtasks:
               - create sameple data in firestore
               - use previously created app to fetch the data and display it
       - name: able to connect ui to backend
+        id: frontend-backend-connection-tasks
         tasks:
           - name: make a todo list app
+            id: todo-list
             subtasks:
+              - start using proper git practices and commit messages for the app
               - create a basic todo list application in flutter (no database, local everything)
               - use firestore as backend for the todo list (no need for authentication)
               - ensure final app is able to display data from firestore, edit data, add new items, and delete items
           - name: create a paginated view for todo list app
+            id: paginated-todo-list
             subtasks:
+              - continue using proper git practices and commit messages for the app
               - use the same todo list app, but use pagination to display items
               - create a paginated view of the todos where new todos are loaded using a button at the bottom of the app for the user to manually click and load more todos
               - use previous logic to instead load new todos as the user scrolls down the list, anticipating the need for loading more
           - name: enable caching on the todo app
+            id: todo-list-caching
             subtasks:
               - cache already loaded todos in memory
               - use a cache invalidation system to ensure that the app is always up to date with the latest data
               - use cache to display the todos when the app is loaded before loading/updating the data
           - name: create an oauth2 authentication enabled app
+            id: oauth2-authentication
             subtasks:
               - setup authentication on firebase console
               - connect app to firebase authentication
               - create a login screen for the app
               - display and store todos on the basis of logged in user
       - name: able to use blocs
+        id: bloc-tasks
         tasks:
           - name: learn about state management techniques, and blocs
+            id: learn-about-blocs
             subtasks:
               - learn about the different state management techniques and how they work
               - rebuild todo list application's backend using blocs
