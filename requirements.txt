@@ -12,6 +12,7 @@ websockets
 black
 pyyaml
 google-cloud-firestore
+python-dotenv
 
 # Dev
 pre-commit

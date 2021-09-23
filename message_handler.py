@@ -1,3 +1,5 @@
+import os
+
 from commands.base_command import BaseCommand
 
 # This, in addition to tweaking __all__ on commands/__init__.py,
@@ -24,9 +26,9 @@ async def handle_command(command, args, message, bot_client):
     if command not in COMMAND_HANDLERS:
         return
 
-    print(
-        f"{message.author.name}: {settings.COMMAND_PREFIX}{command} " + " ".join(args)
-    )
+    command_prefix = settings.COMMAND_PREFIX[os.environ.get("ENV")]
+    print(f"[DEBUG] {message.author.name}: {command_prefix}{command} " + " ".join(args))
+    print(f"[DEBUG] {message.author.name}'s id: {message.author.id}")
 
     # Retrieve the command
     cmd_obj = COMMAND_HANDLERS[command]

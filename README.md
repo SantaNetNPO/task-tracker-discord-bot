@@ -23,6 +23,9 @@ You can edit the following parameters in the `settings.py` file:
 - **NOW_PLAYING**: The text that the bot will display as its now playing status. You can set it to anything *falsy* (`""`, `None`, `False`, ...) to disable it.
 - **BASE_DIR**: This isn't really a setting, but you can use to build relative paths inside your code. It points to the directory where the settings file itself is stored.
 
+# Get BOT_TOKEN
+Get the `.env` file from the maintainer of this repository, in order to live test it.
+
 # Running your bot
 Just run `python your_bot.py` and everything should work just fine if all dependencies are met. Of course, you can rename `your_bot.py` to anything you want.
 
