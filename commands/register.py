@@ -15,9 +15,15 @@ class Register(BaseCommand):
 
     async def handle(self, params, message, client):
         async with message.channel.typing():
-            user_exists = firestore.Client().collection("users").document(str(message.author.id)).get().exists
+            user_exists = (
+                firestore.Client()
+                .collection(f"users_{os.environ.get('ENV')}")
+                .document(str(message.author.id))
+                .get()
+                .exists
+            )
             if not user_exists:
-                firestore.Client().collection("users").document(str(message.author.id)).set({})
+                firestore.Client().collection(f"users_{os.environ.get('ENV')}").document(str(message.author.id)).set({})
 
             user_doc = await check_registration_get_doc(message)
 
@@ -28,13 +34,13 @@ class Register(BaseCommand):
                 return
             first_objective = get_first_objective(department)
 
-            for department_current_task in user_doc.to_dict().get(f"current_task_{os.environ.get('ENV')}") or []:
+            for department_current_task in user_doc.to_dict().get("current_task") or []:
                 if department_current_task["department_id"] == department:
                     await message.channel.send(f"You are already registered for '{department}'.")
                     return
-            firestore.Client().collection("users").document(str(message.author.id)).update(
+            firestore.Client().collection(f"users_{os.environ.get('ENV')}").document(str(message.author.id)).update(
                 {
-                    f"current_task_{os.environ.get('ENV')}": firestore.ArrayUnion(
+                    "current_task": firestore.ArrayUnion(
                         [
                             {
                                 "department_id": department,

@@ -31,7 +31,7 @@ async def check_registration_get_doc(message):
     print("[Firebase]: Requesting User Data")
 
     db = firestore.Client()
-    doc_ref = db.collection("users").document(str(message.author.id))
+    doc_ref = db.collection(f"users_{os.environ.get('ENV')}").document(str(message.author.id))
     doc = doc_ref.get()
     if doc.exists:
         previous_message_id = message.id
@@ -49,7 +49,7 @@ async def get_user_current_task(message):
     """
     user_doc = await check_registration_get_doc(message)
     if user_doc:
-        for item in user_doc.to_dict()[f"current_task_{os.environ.get('ENV')}"]:
+        for item in user_doc.to_dict()["current_task"]:
             if item["department_id"] == message.channel.name:
                 return item
         # If the message's channel is not a department channel, ask user to use this command in a department channel.
@@ -92,10 +92,8 @@ async def set_user_current_task(message, updated_current_task):
         stats_doc_ref.set(stats_doc_dict)
         user_doc.reference.update({f"stats_{os.environ.get('ENV')}": user_doc_dict_stats})
 
-        user_doc.reference.update({f"current_task_{os.environ.get('ENV')}": firestore.ArrayRemove([current_task])})
-        user_doc.reference.update(
-            {f"current_task_{os.environ.get('ENV')}": firestore.ArrayUnion([updated_current_task])}
-        )
+        user_doc.reference.update({"current_task": firestore.ArrayRemove([current_task])})
+        user_doc.reference.update({"current_task": firestore.ArrayUnion([updated_current_task])})
         return True
     else:
         return False
