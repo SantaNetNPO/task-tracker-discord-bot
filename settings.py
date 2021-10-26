@@ -4,6 +4,8 @@ import os
 # It doesn't have to be a single character!
 COMMAND_PREFIX = {"default": "!", "dev": ".", "prod": "!"}
 
+ADMIN_ROLES = [876084331402109008, 890467951420014612]
+
 ADMIN_ROLE_MENTION = "<@&890467951420014612>"
 
 REACTION_WAIT_TIMEOUT = 60
