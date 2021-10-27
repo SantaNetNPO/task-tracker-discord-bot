@@ -1,6 +1,9 @@
 departments:
   - name: Application Development
     id: app-dev
+    admins:
+      - 316915350291873792
+      - 425754505989193749
     objectives:
       - name: able to create a frontend
         id: frontend-tasks

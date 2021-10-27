@@ -20,6 +20,13 @@ def get_departments():
     return reduce(lambda x, y: [*x, y["id"]], get_task_config()["departments"], [])
 
 
+def get_department_admins():
+    """
+    Returns a dictionary of `department`:list(`admin`) pairs
+    """
+    return {department["id"]: department["admins"] for department in get_task_config()["departments"]}
+
+
 def get_first_objective(department):
     """
     Returns the first objective of a department.

@@ -15,3 +15,5 @@ NOW_PLAYING = "games with your life."
 
 # Base directory. Feel free to use it if you want.
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+
+GUILD_ID = 737011095981522954
