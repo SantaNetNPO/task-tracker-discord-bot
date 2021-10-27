@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 from google.cloud import firestore
+from discord import HTTPException
 
 from events.base_event import BaseEvent
 from commands.task_utils import get_department_admins
@@ -29,9 +30,12 @@ class SlackerNotificationEvent(BaseEvent):
 
             message = "**Slackers List:**\n"
             for user in department_users:
+                try:
+                    discord_user = await santanet_guild.fetch_member(user.id)
+                except HTTPException:
+                    continue
                 for current_task in user.get("current_task"):
                     if current_task.get("department_id") == department:
-                        discord_user = await santanet_guild.fetch_member(user.id)
                         message += f"{discord_user.display_name}: {(datetime.now() - datetime.fromtimestamp(current_task.get('task_started_time'))).days} days\n"
 
             for admin in department_admin_mapping[department]:
