@@ -9,8 +9,9 @@ from datetime import datetime
 # as the parent class
 class ExampleEvent(BaseEvent):
     def __init__(self):
-        interval_minutes = 60  # Set the interval for this event
-        super().__init__(interval_minutes)
+        trigger_mode = "interval"
+        kwargs = {"minutes": 60}
+        super().__init__(trigger_mode, kwargs)
 
     # Override the run() method
     # It will be called once every {interval_minutes} minutes

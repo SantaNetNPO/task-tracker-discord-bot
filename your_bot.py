@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import sys
 
@@ -51,7 +52,13 @@ def main():
         n_ev = 0
         for ev in BaseEvent.__subclasses__():
             event = ev()
-            sched.add_job(event.run, "interval", (client,), minutes=event.interval_minutes)
+            sched.add_job(
+                event.run,
+                event.trigger_mode,
+                (client,),
+                next_run_time=datetime.now(),
+                **event.kwargs,
+            )
             n_ev += 1
         sched.start()
         print(f"{n_ev} events loaded", flush=True)
